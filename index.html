@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Money Calculator - Estimate Your Earnings</title>
+  <meta name="description" content="Free YouTube Money Calculator. Estimate your potential YouTube earnings from views and RPM.">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 15px;
+      border: 0;
+      border-radius: 10px;
+      background: #ef4444;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #dc2626;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f1f5f9;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .result strong {
+      color: #16a34a;
+      font-size: 26px;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>YouTube Money Calculator</h1>
+  <p>Estimate your potential YouTube earnings from views and RPM.</p>
+</header>
+
+<div class="container">
+  <div class="card">
+
+    <label for="views">Monthly Views</label>
+    <input type="number" id="views" placeholder="Example: 100000">
+
+    <label for="rpm">Estimated RPM ($)</label>
+    <input type="number" id="rpm" placeholder="Example: 4" step="0.01">
+
+    <button onclick="calculate()">Calculate Earnings</button>
+
+    <div class="result" id="result">
+      Estimated monthly earnings:<br>
+      <strong id="monthly">$0</strong>
+      <br><br>
+      Estimated yearly earnings:
+      <strong id="yearly">$0</strong>
+    </div>
+
+    <div class="note">
+      This calculator provides an estimate only. Actual YouTube earnings
+      vary depending on audience location, content category, advertising,
+      seasonality and other factors.
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 Creator Tools
+</footer>
+
+<script>
+function calculate() {
+  const views = Number(document.getElementById("views").value);
+  const rpm = Number(document.getElementById("rpm").value);
+
+  if (!views || !rpm || views < 0 || rpm < 0) {
+    alert("Please enter valid numbers.");
+    return;
+  }
+
+  const monthly = (views / 1000) * rpm;
+  const yearly = monthly * 12;
+
+  document.getElementById("monthly").textContent =
+    "$" + monthly.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+  document.getElementById("yearly").textContent =
+    "$" + yearly.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+  document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>
